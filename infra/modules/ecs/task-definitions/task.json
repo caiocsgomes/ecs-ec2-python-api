@@ -1,0 +1,50 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "${image}",
+    "portMappings": [
+      {
+        "containerPort": ${container_port},
+        "hostPort": ${container_port}
+      }
+    ],
+    "cpu": ${task_cpu},
+    "memory": ${task_memory},
+    "networkMode": "awsvpc",
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "${container_name}"
+      }
+    },
+    "environment": [
+      {
+        "name": "PORT",
+        "value": "${container_port}"
+      },
+      {
+        "name": "ENV",
+        "value": "${env}"
+      },
+      {
+        "name": "DB_HOST",
+        "value": "${db_host}"
+      },
+      {
+        "name": "DB_NAME",
+        "value": "${db_name}"
+      },
+      {
+        "name": "SM_DB_USER_SECRET_NAME",
+        "value": "${sm_db_user_secret_name}"
+      },
+      {
+        "name": "SM_DB_PASSWORD_SECRET_NAME",
+        "value": "${sm_db_password_secret_name}"
+      }
+    ]
+  }
+]

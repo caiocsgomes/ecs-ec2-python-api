@@ -1,0 +1,6 @@
+project_name        = "ecstemplate"
+region              = "us-east-1"
+hosted_zone         = "caiogomes.me"
+task_name           = "simpleweb"
+container_image     = "322620855520.dkr.ecr.us-east-1.amazonaws.com/ecs-fargate-python-api:latest"
+task_container_port = "5000"
