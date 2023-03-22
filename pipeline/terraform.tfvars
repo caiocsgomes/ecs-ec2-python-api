@@ -1,4 +1,4 @@
-pipeline_name = "ecs-fargate-python-api"
+pipeline_name = "ecs-ec2-python-api"
 github_owner  = "caiocsgomes"
-github_repo   = "ecs-fargate-python-api"
+github_repo   = "ecs-ec2-python-api"
 github_branch = "main"

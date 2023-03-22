@@ -14,15 +14,23 @@ resource "aws_ecs_cluster" "ecs_cluster" {
   }
 }
 
-resource "aws_ecs_cluster_capacity_providers" "ecs_cluster_capacity_provider" {
+resource "aws_ecs_cluster_capacity_providers" "cluster_capacity_providers" {
   cluster_name = aws_ecs_cluster.ecs_cluster.name
 
-  capacity_providers = ["FARGATE"]
+  capacity_providers = [aws_ecs_capacity_provider.capacity_provider.name]
 
   default_capacity_provider_strategy {
     base              = 1
     weight            = 100
-    capacity_provider = "FARGATE"
+    capacity_provider = aws_ecs_capacity_provider.capacity_provider.name
+  }
+}
+
+resource "aws_ecs_capacity_provider" "capacity_provider" {
+  name = "example"
+
+  auto_scaling_group_provider {
+    auto_scaling_group_arn = aws_autoscaling_group.asg.arn
   }
 }
 
