@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "simpletracking-state-store-backend"
+    bucket         = "ecs-ec2-python-api-statefile"
     key            = "terraform.tfstate"
-    dynamodb_table = "simpletracking-state-locking-table"
+    dynamodb_table = "ecs-ec2-python-api-statelock-db"
     region         = "us-east-1"
   }
 }

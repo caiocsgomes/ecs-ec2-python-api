@@ -31,6 +31,7 @@ module "ecs" {
   cluster_name               = "${var.project_name}-cluster"
   ecs_service_name           = "${var.project_name}-service"
   task_name                  = "${var.project_name}-task"
+  project_name               = var.project_name
   task_container_name        = var.task_name
   task_container_image       = var.container_image
   task_memory                = var.task_memory

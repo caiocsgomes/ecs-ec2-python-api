@@ -1,3 +1,4 @@
+variable "project_name" {}
 variable "cluster_name" {}
 variable "ecs_service_name" {}
 variable "task_name" {}
@@ -46,3 +47,28 @@ variable "sm_db_password_secret_name" {
   default     = ""
   description = "The database password secret name in Secrets Manager"
 }
+
+variable "asg_max_size" {
+  type        = number
+  default     = 1
+  description = "The maximum size of the autoscaling group"
+}
+
+variable "asg_min_size" {
+  type        = number
+  default     = 1
+  description = "The minimum size of the autoscaling group"
+}
+
+variable "asg_desired_capacity" {
+  type        = number
+  default     = 1
+  description = "The desired capacity of the autoscaling group"
+}
+
+variable "instance_type" {
+  type        = string
+  default     = "t3.micro"
+  description = "The instance type of the autoscaling group"
+}
+

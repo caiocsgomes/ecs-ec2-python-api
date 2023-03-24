@@ -1,6 +1,6 @@
-project_name        = "ecs-ec2-python-api"
+project_name        = "ecsec2pythonapi"
 region              = "us-east-1"
 hosted_zone         = "caiogomes.me"
-task_name           = "simpleapi"
+task_name           = "ecs-ec2-python-api"
 container_image     = "322620855520.dkr.ecr.us-east-1.amazonaws.com/ecs-ec2-python-api"
 task_container_port = "5000"
