@@ -4,7 +4,7 @@ resource "aws_alb_target_group" "tg" {
   vpc_id = var.vpc_id
 
   protocol    = "HTTP"
-  target_type = "ip"
+  target_type = "instance"
 
   lifecycle {
     create_before_destroy = true

@@ -1,6 +1,6 @@
 resource "aws_security_group" "service_sg" {
-  name        = format("%s-%s-sg", var.cluster_name, var.ecs_service_name)
-  description = format("%s-%s", var.cluster_name, var.ecs_service_name)
+  name        = "${var.project_name}-sg"
+  description = "${var.project_name} security group"
 
   vpc_id = var.vpc_id
 
@@ -12,7 +12,7 @@ resource "aws_security_group" "service_sg" {
   }
 
   tags = {
-    Name = format("%s-%s-sg", var.cluster_name, var.ecs_service_name)
+    Name = "${var.project_name}-sg"
   }
 }
 
