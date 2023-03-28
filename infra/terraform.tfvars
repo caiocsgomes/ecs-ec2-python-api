@@ -1,4 +1,4 @@
-project_name        = "ecsec2pythonapi"
+project_name        = "template-ecs-ec2"
 region              = "us-east-1"
 hosted_zone         = "caiogomes.me"
 task_name           = "ecs-ec2-python-api"

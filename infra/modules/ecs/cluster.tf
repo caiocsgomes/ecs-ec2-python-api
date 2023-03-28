@@ -14,11 +14,13 @@ resource "aws_ecs_cluster" "ecs_cluster" {
   }
 }
 
+# This defines the infrastructure for the ECS cluster.
 resource "aws_ecs_cluster_capacity_providers" "cluster_capacity_providers" {
   cluster_name = aws_ecs_cluster.ecs_cluster.name
 
   capacity_providers = [aws_ecs_capacity_provider.capacity_provider.name]
 
+  # The capacity provide strategy is used to define how the cluster will spread tasks across the capacity providers.
   default_capacity_provider_strategy {
     base              = 1
     weight            = 100
@@ -27,7 +29,7 @@ resource "aws_ecs_cluster_capacity_providers" "cluster_capacity_providers" {
 }
 
 resource "aws_ecs_capacity_provider" "capacity_provider" {
-  name = "${var.cluster_name}-capacity-provider"
+  name = "${var.project_name}-cp"
 
   auto_scaling_group_provider {
     auto_scaling_group_arn = aws_autoscaling_group.asg.arn
@@ -35,7 +37,7 @@ resource "aws_ecs_capacity_provider" "capacity_provider" {
 }
 
 resource "aws_cloudwatch_log_group" "ecs_cluster_logs" {
-  name = format("%s-logs", var.cluster_name)
+  name = "${var.cluster_name}-logs"
 
   tags = {
     Application = var.cluster_name

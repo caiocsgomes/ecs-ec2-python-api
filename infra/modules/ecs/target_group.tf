@@ -1,10 +1,10 @@
 resource "aws_alb_target_group" "tg" {
-  name   = format("%s-tg", var.cluster_name)
+  name   = "${var.project_name}-tg"
   port   = var.task_container_port
   vpc_id = var.vpc_id
 
   protocol    = "HTTP"
-  target_type = "instance"
+  target_type = "ip"
 
   lifecycle {
     create_before_destroy = true
