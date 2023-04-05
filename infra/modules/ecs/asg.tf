@@ -21,7 +21,10 @@ resource "aws_launch_configuration" "lc" {
   instance_type        = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ecs_instance_profile.name
   security_groups      = ["${aws_security_group.service_sg.id}"]
-
+  user_data            = <<-EOF
+              #!/bin/bash
+              echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config
+              EOF
   lifecycle {
     create_before_destroy = true
   }
@@ -29,7 +32,7 @@ resource "aws_launch_configuration" "lc" {
 
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
   name = "ecs_instance_profile"
-  role = aws_iam_role.task_execution_role.name
+  role = aws_iam_role.ec2_role.name
 }
 
 data "aws_ami" "ecs_ami" {
