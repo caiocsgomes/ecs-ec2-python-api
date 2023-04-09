@@ -43,3 +43,4 @@ resource "aws_cloudwatch_log_group" "ecs_cluster_logs" {
     Application = var.cluster_name
   }
 }
+

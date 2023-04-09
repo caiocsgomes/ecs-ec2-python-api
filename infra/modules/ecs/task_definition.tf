@@ -1,6 +1,6 @@
 data "template_file" "task" {
   template = file(format("%s/task-definitions/task.json", path.module))
-  vars     = {
+  vars = {
     container_name             = var.task_name
     image                      = var.task_container_image
     task_cpu                   = var.task_cpu
@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   family                   = var.task_name
   cpu                      = var.task_cpu
   memory                   = var.task_memory
-  network_mode             = "awsvpc"
+  network_mode             = "bridge"
   requires_compatibilities = ["EC2"]
   container_definitions    = data.template_file.task.rendered
   execution_role_arn       = aws_iam_role.task_execution_role.arn

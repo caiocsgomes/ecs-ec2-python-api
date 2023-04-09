@@ -39,7 +39,7 @@ module "ecs" {
   task_container_port        = var.task_container_port
   vpc_id                     = module.vpc.vpc_id
   cluster_listener           = module.alb.listener_arn
-  ecs_service_path           = "/${var.environment}"
+  alb_sg                     = module.alb.alb_sg
   region                     = var.region
   availability_zones         = var.availability_zones
   subnets                    = module.vpc.private_subnet_ids
@@ -49,4 +49,10 @@ module "ecs" {
   db_name                    = module.rds.db_name
   sm_db_user_secret_name     = module.rds.rds_secrets_manager_username_id
   sm_db_password_secret_name = module.rds.rds_secrets_manager_password_id
+
+  depends_on = [
+    module.vpc,
+    module.alb,
+    module.rds
+  ]
 }

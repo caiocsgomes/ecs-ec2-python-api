@@ -9,7 +9,11 @@ variable "task_memory" {}
 variable "task_container_port" {}
 variable "vpc_id" {}
 variable "cluster_listener" {}
-variable "ecs_service_path" {}
+variable "alb_sg" {}
+variable "ecs_service_path" {
+  description = "value of the path for the listener rule"
+  default     = "/*"
+}
 variable "region" {}
 variable "availability_zones" {}
 variable "subnets" {}
@@ -68,7 +72,7 @@ variable "asg_desired_capacity" {
 
 variable "instance_type" {
   type        = string
-  default     = "t3.micro"
+  default     = "t3.small"
   description = "The instance type of the autoscaling group"
 }
 

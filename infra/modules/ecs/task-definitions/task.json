@@ -4,12 +4,16 @@
     "image": "${image}",
     "portMappings": [
       {
-        "containerPort": ${container_port},
-        "hostPort": ${container_port}
+        "containerPort": ${container_port
+        },
+        "hostPort": ${container_port
+        }
       }
     ],
-    "cpu": ${task_cpu},
-    "memory": ${task_memory},
+    "cpu": ${task_cpu
+    },
+    "memory": ${task_memory
+    },
     "networkMode": "awsvpc",
     "essential": true,
     "logConfiguration": {

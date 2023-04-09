@@ -6,13 +6,7 @@ The project was used as part of my final project for a cloud computing post grad
 
 # Todo: 
 
-service templateecsec2-service was unable to place a task because no container instance met all of its requirements. Reason: No Container Instances were found in your capacity provider. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide.
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html
 
-No instance associated with the cluster
-
-resource "aws_iam_role_policy_attachment" "attach-ecs-execution-role-policy" {
-  role       = aws_iam_role.task_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-}
-
-was added, test it -> did not solve
+ATTENTION: 
+Container instances need access to communicate with the Amazon ECS service endpoint. This can be through an interface VPC endpoint or through your container instances having public IP addresses.

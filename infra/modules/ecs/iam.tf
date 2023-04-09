@@ -1,6 +1,6 @@
 resource "aws_iam_role" "task_execution_role" {
   name               = "${var.project_name}_ecs_role"
-  assume_role_policy = file("${path.module}/policies/ecs-task-role-trust.json")
+  assume_role_policy = file("${path.module}/policies/ecs-trust-policy.json")
 }
 
 resource "aws_iam_role_policy" "ecs_execution_role_policy" {
@@ -11,7 +11,7 @@ resource "aws_iam_role_policy" "ecs_execution_role_policy" {
 
 resource "aws_iam_role" "task_role" {
   name               = "${var.project_name}_role"
-  assume_role_policy = file("${path.module}/policies/ecs-task-role-trust.json")
+  assume_role_policy = file("${path.module}/policies/ecs-trust-policy.json")
 }
 
 resource "aws_iam_role_policy" "task_role_policy" {
