@@ -72,7 +72,7 @@ variable "asg_desired_capacity" {
 
 variable "instance_type" {
   type        = string
-  default     = "t3.small"
+  default     = "t3.micro"
   description = "The instance type of the autoscaling group"
 }
 

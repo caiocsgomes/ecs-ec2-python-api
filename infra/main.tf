@@ -49,10 +49,4 @@ module "ecs" {
   db_name                    = module.rds.db_name
   sm_db_user_secret_name     = module.rds.rds_secrets_manager_username_id
   sm_db_password_secret_name = module.rds.rds_secrets_manager_password_id
-
-  depends_on = [
-    module.vpc,
-    module.alb,
-    module.rds
-  ]
 }

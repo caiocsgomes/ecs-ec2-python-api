@@ -9,10 +9,10 @@ resource "aws_security_group" "service_sg" {
   vpc_id = var.vpc_id
 
   ingress {
-    from_port       = var.task_container_port
-    to_port         = var.task_container_port
-    protocol        = "tcp"
-    security_groups = [var.alb_sg]
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = local.subnet_cidr_blocks
   }
 
   egress {
@@ -68,13 +68,6 @@ resource "aws_security_group" "ec2_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "-1"
-    cidr_blocks = [data.aws_network_interface.ecs_vpc_endpoint_nic.private_ip]
   }
 
   ingress {
