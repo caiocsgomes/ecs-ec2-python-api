@@ -1,5 +1,4 @@
 resource "aws_launch_configuration" "lc" {
-  depends_on                  = [aws_security_group.service_sg]
   name_prefix                 = "lc-${var.project_name}"
   image_id                    = data.aws_ami.ecs_ami.id
   instance_type               = var.instance_type
@@ -21,18 +20,3 @@ resource "aws_iam_instance_profile" "ecs_instance_profile" {
   role = aws_iam_role.ec2_role.name
 }
 
-data "aws_ami" "ecs_ami" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-ecs-hvm-2.0.*-x86_64-ebs"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["amazon"]
-}

@@ -41,5 +41,5 @@ variable "task_memory" {
   default = "512"
 }
 
-variable "task_container_port" {}
+variable "task_port" {}
 

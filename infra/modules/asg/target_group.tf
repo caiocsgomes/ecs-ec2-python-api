@@ -1,6 +1,6 @@
 resource "aws_alb_target_group" "tg" {
   name   = "${var.project_name}-tg"
-  port   = var.task_container_port
+  port   = var.task_port
   vpc_id = var.vpc_id
 
   protocol    = "HTTP"
@@ -12,7 +12,7 @@ resource "aws_alb_target_group" "tg" {
 
   health_check {
     path                = "/healthcheck"
-    port                = var.task_container_port
+    port                = var.task_port
     protocol            = "HTTP"
     healthy_threshold   = 2
     unhealthy_threshold = 2

@@ -11,5 +11,5 @@ output "db_host" {
 }
 
 output "db_name" {
-  value = aws_db_instance.database.name
+  value = aws_db_instance.database.db_name
 }

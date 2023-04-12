@@ -32,7 +32,7 @@ resource "aws_ecs_capacity_provider" "capacity_provider" {
   name = "${var.project_name}-cp"
 
   auto_scaling_group_provider {
-    auto_scaling_group_arn = aws_autoscaling_group.asg.arn
+    auto_scaling_group_arn = var.asg_arn
   }
 }
 

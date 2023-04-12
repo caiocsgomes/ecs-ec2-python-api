@@ -15,6 +15,15 @@ module "rds" {
   allowed_sg_connection = [module.ecs.service_sg]
 }
 
+module "asg" {
+  source       = "./modules/asg"
+  subnets      = module.vpc.private_subnet_ids
+  cluster_name = "${var.project_name}-cluster"
+  vpc_id       = module.vpc.vpc_id
+  alb_sg       = module.alb.alb_sg
+  task_port    = var.task_port
+  project_name = var.project_name
+}
 
 module "vpc" {
   source               = "./modules/vpc"
@@ -30,18 +39,16 @@ module "ecs" {
   source                     = "./modules/ecs"
   cluster_name               = "${var.project_name}-cluster"
   ecs_service_name           = "${var.project_name}-service"
-  task_name                  = "${var.project_name}-task"
   project_name               = var.project_name
-  task_container_name        = var.task_name
-  task_container_image       = var.container_image
+  task_name                  = var.task_name
+  task_image                 = var.container_image
   task_memory                = var.task_memory
   task_cpu                   = var.task_cpu
-  task_container_port        = var.task_container_port
+  task_port                  = var.task_port
   vpc_id                     = module.vpc.vpc_id
   cluster_listener           = module.alb.listener_arn
   alb_sg                     = module.alb.alb_sg
   region                     = var.region
-  availability_zones         = var.availability_zones
   subnets                    = module.vpc.private_subnet_ids
   allowed_sg_connection      = [module.alb.alb_sg]
   env                        = var.environment
@@ -49,4 +56,6 @@ module "ecs" {
   db_name                    = module.rds.db_name
   sm_db_user_secret_name     = module.rds.rds_secrets_manager_username_id
   sm_db_password_secret_name = module.rds.rds_secrets_manager_password_id
+  asg_arn                    = module.asg.asg_arn
+  tg_arn                     = module.asg.tg_arn
 }

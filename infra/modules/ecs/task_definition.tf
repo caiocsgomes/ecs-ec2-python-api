@@ -2,11 +2,11 @@ data "template_file" "task" {
   template = file(format("%s/task-definitions/task.json", path.module))
   vars = {
     container_name             = var.task_name
-    image                      = var.task_container_image
+    image                      = var.task_image
     task_cpu                   = var.task_cpu
     task_memory                = var.task_memory
     essential                  = true
-    container_port             = var.task_container_port
+    container_port             = var.task_port
     log_group                  = aws_cloudwatch_log_group.logs.name
     region                     = var.region
     env                        = var.env
